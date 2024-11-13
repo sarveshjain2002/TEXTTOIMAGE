@@ -1,8 +1,8 @@
-
 import streamlit as st
 import replicate
 import time
 from dotenv import load_dotenv
+import os
 
 # Load environment variables
 load_dotenv()
@@ -26,7 +26,14 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 st.title("AI Image Generator with Replicate API")
-st.markdown("Welcome to the **AI Image Generator Dashboard**. Please enter your **Replicate API Key** below to get started.")
+st.markdown("Welcome to the **AI Image Generator Dashboard**. Please follow the instructions below to get started:")
+
+# Instruction to the user for getting API Key
+st.markdown("""
+    1. To use this tool, you need a **Replicate API Key**.
+    2. [Click here](https://replicate.com/account/api-tokens) to generate your API key.
+    3. Once you have the key, enter it below and start generating images, prompts, or removing backgrounds.
+""")
 
 # API Key input
 api_key = st.text_input("Enter your Replicate API Key:", type="password", placeholder="Your API Key here...")
@@ -34,7 +41,6 @@ api_key = st.text_input("Enter your Replicate API Key:", type="password", placeh
 # Check if API Key is provided
 if api_key:
     # Save the API Key to the environment
-    import os
     os.environ["REPLICATE_API_KEY"] = api_key
 
     # Set up the Replicate API client
